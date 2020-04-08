@@ -6,8 +6,9 @@ all:
 
 .PHONY: test
 test:
-	$(MLCOMP) regexp.mlb
+	$(MAKE) -C test test
 
 .PHONY: clean
 clean:
+	$(MAKE) -C test clean
 	rm -rf MLB *~ run
