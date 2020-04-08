@@ -1,0 +1,6 @@
+local $(SML_LIB)/basis/basis.mlb
+      ../sml-setmap/int_set.mlb
+      ../sml-setmap/int_map.mlb
+in REG_EXP.sig
+   RegExp.sml
+end
