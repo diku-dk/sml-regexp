@@ -34,8 +34,9 @@ jobs:
           echo "SML_LIB $HOME/mlkit-bin-dist-linux/lib/mlkit" > .mlkit/mlb-path-map
 
       - name: Check
-        run: smlpkg --version
-        run: mlkit --version
+        run: |
+          smlpkg --version
+          mlkit --version
 
       - name: Build
         run: MLCOMP=mlkit make clean all
@@ -65,8 +66,9 @@ jobs:
           echo "SML_LIB $HOME/mlkit-bin-dist-darwin/lib/mlkit" > .mlkit/mlb-path-map
 
       - name: Check
-        run: smlpkg --version
-        run: mlkit --version
+        run: |
+          smlpkg --version
+          mlkit --version
 
       - name: Build
         run: MLCOMP=mlkit make clean all
