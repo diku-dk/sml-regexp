@@ -24,8 +24,8 @@ jobs:
       - run: |
          echo "OS=$(echo $RUNNER_OS | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
          echo "MYVAR=hello" >> $GITHUB_ENV
-         echo ${{ env.$HOME }}
-         echo ${{ env.$RUNNER_HOME }}
+         echo ${{ env.HOME }}
+         echo ${{ env.RUNNER_HOME }}
          echo ${{ runner.home }}
 
       - name: Install dependencies
