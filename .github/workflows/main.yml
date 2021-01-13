@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         working-directory: /home/runner
         run: |
-	  pwd
-	  ls -la
+          pwd
+          ls -la
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
           tar xzvf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
