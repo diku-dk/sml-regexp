@@ -26,8 +26,9 @@ jobs:
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
           tar xzvf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
-          $HOME/smlpkg-bin-dist-linux/bin/smlpkg --version
           echo $PATH
+          pwd
+          $HOME/smlpkg-bin-dist-linux/bin/smlpkg --version
           wget https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-linux.tgz
           tar xzvf mlkit-bin-dist-linux.tgz
           echo "$HOME/mlkit-bin-dist-linux/bin" >> $GITHUB_PATH
