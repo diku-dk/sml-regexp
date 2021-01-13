@@ -29,10 +29,11 @@ jobs:
          echo ${{ runner.home }}
 
       - name: Install dependencies
-        working-directory: /home/runner
+        working-directory: ${{ env.RUNHOME }}
         run: |
           echo $OS
           echo $RUNHOME
+          echo ${{ env.RUNHOME }}
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
           tar xzf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
