@@ -23,7 +23,7 @@ jobs:
 
       - run: |
          echo "OS=$(echo $RUNNER_OS | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-         echo "MYVAR=hello" >> $GITHUB_ENV
+         echo "RUNHOME=$(echo $HOME)" >> $GITHUB_ENV
          echo ${{ env.HOME }}
          echo ${{ env.RUNNER_HOME }}
          echo ${{ runner.home }}
@@ -32,7 +32,7 @@ jobs:
         working-directory: /home/runner
         run: |
           echo $OS
-          echo $MYVAR
+          echo $RUNHOME
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
           tar xzf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
