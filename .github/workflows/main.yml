@@ -23,8 +23,9 @@ jobs:
 
       - run: echo $RUNNER_OS
 
-      - run: echo $OS
-        env: OS=$( shell echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
+      - run: |
+         OS=$(shell echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
+         echo $OS
 
       - name: Install dependencies
         working-directory: /home/runner
