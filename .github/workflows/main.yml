@@ -21,12 +21,13 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - run: echo $OS
-        env: OS=$( echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
+      - run: |
+         echo "OS=$(shell echo $RUNNER_OS | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Install dependencies
         working-directory: /home/runner
         run: |
+          echo ${{ env.OS }}
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
           tar xzf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
