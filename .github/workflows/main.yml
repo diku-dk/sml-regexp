@@ -34,17 +34,14 @@ jobs:
           echo "SML_LIB $HOME/mlkit-bin-dist-linux/lib/mlkit" > .mlkit/mlb-path-map
 
       - name: Check
-        run: |
-          smlpkg --version
-          mlkit --version
+        run: smlpkg --version
+        run: mlkit --version
 
       - name: Build
-        run: |
-          MLCOMP=mlkit make clean all
+        run: MLCOMP=mlkit make clean all
 
       - name: Run tests
-        run: |
-          MLCOMP=mlkit make test
+        run: MLCOMP=mlkit make test
 
 
   build-test-macos:
@@ -58,7 +55,6 @@ jobs:
       - name: Install dependencies
         working-directory: /Users/runner
         run: |
-          pwd
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-darwin.tgz
           tar xzf smlpkg-bin-dist-darwin.tgz
           echo "$HOME/smlpkg-bin-dist-darwin/bin" >> $GITHUB_PATH
@@ -69,14 +65,11 @@ jobs:
           echo "SML_LIB $HOME/mlkit-bin-dist-darwin/lib/mlkit" > .mlkit/mlb-path-map
 
       - name: Check
-        run: |
-          smlpkg --version
-          mlkit --version
+        run: smlpkg --version
+        run: mlkit --version
 
       - name: Build
-        run: |
-          MLCOMP=mlkit make clean all
+        run: MLCOMP=mlkit make clean all
 
       - name: Run tests
-        run: |
-          MLCOMP=mlkit make test
+        run: MLCOMP=mlkit make test
