@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         working-directory: /Users/runner
         run: |
-	  pwd
+          pwd
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-darwin.tgz
           tar xzf smlpkg-bin-dist-darwin.tgz
           echo "$HOME/smlpkg-bin-dist-darwin/bin" >> $GITHUB_PATH
