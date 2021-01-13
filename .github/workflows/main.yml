@@ -24,19 +24,19 @@ jobs:
       - name: Install dependencies
         working-directory: /home/runner
         run: |
-          pwd
-          ls -la
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
-          tar xzvf smlpkg-bin-dist-linux.tgz
+          tar xzf smlpkg-bin-dist-linux.tgz
           echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
-          echo $PATH
-          pwd
-          smlpkg-bin-dist-linux/bin/smlpkg --version
           wget https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-linux.tgz
-          tar xzvf mlkit-bin-dist-linux.tgz
+          tar xzf mlkit-bin-dist-linux.tgz
           echo "$HOME/mlkit-bin-dist-linux/bin" >> $GITHUB_PATH
           mkdir -p .mlkit
           echo "SML_LIB $HOME/mlkit-bin-dist-linux/lib/mlkit" > .mlkit/mlb-path-map
+
+      - name: Check
+        run: |
+          smlpkg --version
+          mlkit --version
 
       - name: Build
         run: |
@@ -56,16 +56,21 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        working-directory: $HOME
+        working-directory: /home/runner
         run: |
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-darwin.tgz
-          tar xzvf smlpkg-bin-dist-darwin.tgz
+          tar xzf smlpkg-bin-dist-darwin.tgz
           echo "$HOME/smlpkg-bin-dist-darwin/bin" >> $GITHUB_PATH
           wget https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-darwin.tgz
-          tar xzvf mlkit-bin-dist-darwin.tgz
+          tar xzf mlkit-bin-dist-darwin.tgz
           echo "$HOME/mlkit-bin-dist-darwin/bin" >> $GITHUB_PATH
           mkdir -p .mlkit
           echo "SML_LIB $HOME/mlkit-bin-dist-darwin/lib/mlkit" > .mlkit/mlb-path-map
+
+      - name: Check
+        run: |
+          smlpkg --version
+          mlkit --version
 
       - name: Build
         run: |
