@@ -21,9 +21,10 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - run: echo "::set-env name=OS::$( shell uname -s | tr '[:upper:]' '[:lower:]')"
+      - run: echo $RUNNER_OS
 
       - run: echo $OS
+        env: OS=$( shell echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
 
       - name: Install dependencies
         working-directory: /home/runner
