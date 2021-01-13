@@ -1,0 +1,74 @@
+name: CI
+
+on:
+
+  push:
+    branches: [ master ]
+
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  build-test-linux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y make
+	  # Install smlpkg
+          curl -L -o smlpkg-bin-dist-linux.tgz https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-linux.tgz
+          tar xzf smlpkg-bin-dist-linux.tgz
+          echo "$HOME/smlpkg-bin-dist-linux/bin" >> $GITHUB_PATH
+          # Install mlkit
+          curl -L -o mlkit-bin-dist-linux.tgz https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-linux.tgz
+          echo "$HOME/mlkit-bin-dist-linux/bin" >> $GITHUB_PATH
+          mkdir -p ~/.mlkit
+	  echo "SML_LIB $HOME/mlkit-bin-dist-linux/lib/mlkit" > $HOME/.mlkit/mlb-path-map
+
+      - name: Build
+        run: |
+          MLCOMP=mlkit make clean all
+
+      - name: Run tests
+        run: |
+          MLCOMP=mlkit make test
+
+
+  build-test-macos:
+
+    runs-on: macos-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          brew install make
+	  # Install smlpkg
+          curl -L -o smlpkg-bin-dist-darwin.tgz https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-darwin.tgz
+          tar xzf smlpkg-bin-dist-darwin.tgz
+          echo "$HOME/smlpkg-bin-dist-darwin/bin" >> $GITHUB_PATH
+          # Install mlkit
+          curl -L -o mlkit-bin-dist-darwin.tgz https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-darwin.tgz
+          echo "$HOME/mlkit-bin-dist-darwin/bin" >> $GITHUB_PATH
+          mkdir -p ~/.mlkit
+	  echo "SML_LIB $HOME/mlkit-bin-dist-darwin/lib/mlkit" > $HOME/.mlkit/mlb-path-map
+
+      - name: Build
+        run: |
+          MLCOMP=mlkit make clean all
+
+      - name: Run tests
+        run: |
+          MLCOMP=mlkit make test

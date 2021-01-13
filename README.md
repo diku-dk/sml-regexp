@@ -1,4 +1,4 @@
-# sml-regexp [![Build Status](https://travis-ci.org/diku-dk/sml-regexp.svg?branch=master)](https://travis-ci.org/diku-dk/sml-regexp)
+# sml-regexp [![CI](https://github.com/diku-dk/sml-regexp/workflows/CI/badge.svg)](https://github.com/diku-dk/sml-regexp/actions)
 
 Standard ML package for regular expressions.
 
