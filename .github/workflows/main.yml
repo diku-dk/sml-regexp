@@ -24,7 +24,7 @@ jobs:
       - run: echo $RUNNER_OS
 
       - run: |
-         OS=$(shell echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
+         OS=$( echo $RUNNER_OS | tr '[:upper:]' '[:lower:]' )
          echo $OS
 
       - name: Install dependencies
