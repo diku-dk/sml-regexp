@@ -13,9 +13,11 @@ on:
 
 jobs:
 
-  build-test-linux:
+  build-test:
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest, macos-latest]
 
     steps:
 
@@ -29,9 +31,7 @@ jobs:
       - name: Install dependencies
         working-directory: ${{ env.RUNHOME }}
         run: |
-          echo $OS
-          echo $RUNHOME
-          echo ${{ env.RUNHOME }}
+          echo "[OS: $OS, HOME: $RUNHOME]"
           wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-${{env.OS}}.tgz
           tar xzf smlpkg-bin-dist-${{env.OS}}.tgz
           echo "$HOME/smlpkg-bin-dist-${{env.OS}}/bin" >> $GITHUB_PATH
@@ -40,38 +40,6 @@ jobs:
           echo "$HOME/mlkit-bin-dist-${{env.OS}}/bin" >> $GITHUB_PATH
           mkdir -p .mlkit
           echo "SML_LIB $HOME/mlkit-bin-dist-${{env.OS}}/lib/mlkit" > .mlkit/mlb-path-map
-
-      - name: Check
-        run: |
-          smlpkg --version
-          mlkit --version
-
-      - name: Build
-        run: MLCOMP=mlkit make clean all
-
-      - name: Run tests
-        run: MLCOMP=mlkit make test
-
-
-  build-test-macos:
-
-    runs-on: macos-latest
-
-    steps:
-
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        working-directory: /Users/runner
-        run: |
-          wget https://github.com/diku-dk/smlpkg/releases/download/v0.1.4/smlpkg-bin-dist-darwin.tgz
-          tar xzf smlpkg-bin-dist-darwin.tgz
-          echo "$HOME/smlpkg-bin-dist-darwin/bin" >> $GITHUB_PATH
-          wget https://github.com/melsman/mlkit/releases/download/v4.5.4/mlkit-bin-dist-darwin.tgz
-          tar xzf mlkit-bin-dist-darwin.tgz
-          echo "$HOME/mlkit-bin-dist-darwin/bin" >> $GITHUB_PATH
-          mkdir -p .mlkit
-          echo "SML_LIB $HOME/mlkit-bin-dist-darwin/lib/mlkit" > .mlkit/mlb-path-map
 
       - name: Check
         run: |
