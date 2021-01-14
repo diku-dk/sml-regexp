@@ -52,7 +52,7 @@ jobs:
       - name: Install MLton (linux)
         if: ${{ env.OS == 'linux' && matrix.mlcomp == 'mlton' }}
         run: |
-          apt-get install -y mlton
+          sudo apt-get install -y mlton
           mlton
 
       - name: Install MLton (macos)
