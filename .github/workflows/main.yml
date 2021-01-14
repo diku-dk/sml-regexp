@@ -48,16 +48,16 @@ jobs:
 
       - name: Install MLton (linux)
         if: ${{ env.OS == 'linux' }}
-	if: ${{ matrix.mlcomp == 'mlton' }}
+        if: ${{ matrix.mlcomp == 'mlton' }}
         run: |
-	  apt-get install -y mlton
-	  mlton
+          apt-get install -y mlton
+          mlton
 
       - name: Install MLton (macos)
         if: ${{ env.OS == 'darwin' }}
-	if: ${{ matrix.mlcomp == 'mlton' }}
+        if: ${{ matrix.mlcomp == 'mlton' }}
         run: |
-	  brew install mlton
+          brew install mlton
           mlton
 
       - name: Build
