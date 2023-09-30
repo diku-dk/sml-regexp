@@ -5,6 +5,7 @@
  * Larsen. Support for regular expression classes and parenthesis
  * extraction by Martin Elsman. *)
 
+(** SigDoc *)
 structure RegExp :> REG_EXP =
 struct
 

@@ -1,5 +1,5 @@
 package github.com/diku-dk/sml-regexp
 
 require {
-  github.com/diku-dk/sml-setmap 0.0.0-20200407154314+e8479db59660c0b96b782c4b610a9bd32da04920
+  github.com/diku-dk/sml-setmap 0.1.1 #28f95bb08ecd19f719967c945f63f594b3c9fbc6
 }

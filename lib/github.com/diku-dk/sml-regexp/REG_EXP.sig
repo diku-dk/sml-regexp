@@ -1,4 +1,4 @@
-(** NFA implementation of regular expression matching *)
+(** NFA implementation of regular expression matching. *)
 
 signature REG_EXP =
   sig
@@ -9,7 +9,8 @@ signature REG_EXP =
   end
 
 (**
-[regexp] is the type of regular expressions.
+
+[type regexp] is the type of regular expressions.
 
 [fromString s] returns a regular expression by parsing the string s
 according to the syntax given for regular expressions below. Raises
